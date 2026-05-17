@@ -49,6 +49,16 @@ body {
   font-size: 0.85rem;
   opacity: 0.85;
 }
+.banner-wrap {
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.banner-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
 .lang-toggle {
   display: flex;
   gap: 8px;
