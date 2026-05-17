@@ -47,7 +47,7 @@ window.TN_PINCODE_MAP = {
   "600041": { "district": "Chennai", "mla": "Tambaram",                  "mp": "Sriperumbudur"   },
   "600042": { "district": "Chennai", "mla": "Sholinganallur",            "mp": "Chennai South"   },
   "600043": { "district": "Chennai", "mla": "Sholinganallur",            "mp": "Chennai South"   },
-  "600044": { "district": "Chennai", "mla": "Thiyagarayanagar",          "mp": "Chennai South"   },
+  "600044": { "district": "Chennai", "mla": "Pallavaram",                "mp": "Sriperumbudur"   },
   "600045": { "district": "Chennai", "mla": "Anna Nagar",                "mp": "Chennai Central" },
   "600050": { "district": "Chennai", "mla": "Anna Nagar",                "mp": "Chennai Central" },
   "600051": { "district": "Chennai", "mla": "Maduravoyal",               "mp": "Sriperumbudur"   },

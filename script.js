@@ -254,5 +254,5 @@ document.getElementById('registration-form').addEventListener('submit', async (e
 });
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-setLang('ta');
+setLang('en');
 dojInput.value = todayDMY();
