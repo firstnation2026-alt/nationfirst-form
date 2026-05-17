@@ -1,4 +1,4 @@
-const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8L-GLChZskKnk8Rk4sJYcxNSA5dr4oV1y4APHozExRGWU68wv6tla6fbPbxpulq4VBQ/exec';
 
 let currentLang = 'ta';
 
