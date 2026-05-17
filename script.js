@@ -8,6 +8,10 @@ function setLang(lang) {
   currentLang = lang;
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-ta][data-en]').forEach(el => {
+    if (!el.children.length) el.textContent = el.dataset[lang];
+  });
+  // translate hint sub-spans
+  document.querySelectorAll('.hint-filled[data-ta], .hint-edit[data-ta]').forEach(el => {
     el.textContent = el.dataset[lang];
   });
   // textarea placeholders
