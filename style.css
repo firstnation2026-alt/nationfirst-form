@@ -353,7 +353,37 @@ input.invalid, textarea.invalid {
   color: var(--green);
 }
 .success-msg h2 { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; color: var(--green); margin-bottom: 8px; }
-.success-msg p  { font-size: 0.9rem; color: var(--muted); }
+.success-msg > p { font-size: 0.9rem; color: var(--muted); }
+
+.membership-card {
+  margin-top: 24px;
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: center;
+}
+.membership-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-head);
+  margin-bottom: 8px;
+}
+.membership-id {
+  font-family: 'Courier New', monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--yellow);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.membership-note {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+}
 
 /* Contact bar */
 .contact-bar {

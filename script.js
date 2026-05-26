@@ -1,5 +1,12 @@
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8L-GLChZskKnk8Rk4sJYcxNSA5dr4oV1y4APHozExRGWU68wv6tla6fbPbxpulq4VBQ/exec';
 
+function generateMembershipId(pincode) {
+  const pin3   = String(pincode).slice(-3).padStart(3, '0');
+  const rand4  = String(Math.floor(1000 + Math.random() * 9000));
+  const year   = String(new Date().getFullYear()).slice(-2);
+  return `NF-${year}-${pin3}-${rand4}`;
+}
+
 let currentLang = 'ta';
 
 // ── Language ─────────────────────────────────────────────────────────────────
@@ -213,8 +220,12 @@ document.getElementById('registration-form').addEventListener('submit', async (e
   text.classList.add('hidden');
   spin.classList.remove('hidden');
 
+  const pincode = document.getElementById('pincode').value.trim();
+  const membershipId = generateMembershipId(pincode);
+
   const dojParsed = parseDMY(document.getElementById('doj').value);
   const payload = {
+    membership_id:    membershipId,
     timestamp:        new Date().toISOString(),
     language:         currentLang === 'ta' ? 'Tamil' : 'English',
     name:             document.getElementById('name').value.trim(),
@@ -245,6 +256,7 @@ document.getElementById('registration-form').addEventListener('submit', async (e
     document.getElementById('form-card').classList.add('hidden');
     const sm = document.getElementById('success-msg');
     sm.classList.remove('hidden');
+    document.getElementById('membership-id-display').textContent = membershipId;
     setLang(currentLang);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch {

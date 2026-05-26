@@ -5,7 +5,7 @@
 const SHEET_NAME = 'Registrations';
 
 const HEADERS = [
-  'Timestamp', 'Language', 'Name', "Father's Name", 'Gender',
+  'Membership ID', 'Timestamp', 'Language', 'Name', "Father's Name", 'Gender',
   'Education', 'Occupation', 'Email', 'Phone', 'Pincode',
   'State', 'District', 'MLA Constituency', 'MP Constituency',
   'Address', 'Date of Joining', 'Referred By', 'Develop Plan'
@@ -17,6 +17,7 @@ function doPost(e) {
     const sheet = getOrCreateSheet();
 
     sheet.appendRow([
+      data.membership_id,
       data.timestamp,
       data.language,
       data.name,
