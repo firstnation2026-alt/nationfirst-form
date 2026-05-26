@@ -1,286 +1,224 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nation First — உறுப்பினர் பதிவு</title>
+  <title>Nation First — Member Registration</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="form-wrapper">
+<div class="form-wrapper">
 
-    <!-- Header -->
-    <div class="form-header">
-      <div class="banner-wrap">
-        <img src="banner.jpg" alt="Nation First Banner" class="banner-img" />
-      </div>
-      <div class="header-content">
+  <!-- Banner -->
+  <div class="page-banner">
+    <img src="banner.jpg" alt="Nation First" class="banner-img" />
+    <div class="banner-overlay">
+      <div class="banner-text">
         <h1 class="org-title">Nation First Organization</h1>
         <p class="org-sub" data-ta="நிறுவப்பட்டது — 2026" data-en="ESTD 2026"></p>
-        <div class="lang-toggle">
-          <button id="btn-ta" class="lang-btn active" onclick="setLang('ta')">தமிழ்</button>
-          <button id="btn-en" class="lang-btn" onclick="setLang('en')">English</button>
-        </div>
+      </div>
+      <div class="lang-toggle">
+        <button id="btn-en" class="lang-btn active" onclick="setLang('en')">English</button>
+        <button id="btn-ta" class="lang-btn" onclick="setLang('ta')">தமிழ்</button>
       </div>
     </div>
-
-    <!-- Success message -->
-    <div id="success-msg" class="success-msg hidden">
-      <div class="success-icon">✓</div>
-      <h2 data-ta="பதிவு வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது!" data-en="Registration Submitted!"></h2>
-      <p data-ta="உங்கள் தகவல்கள் பெறப்பட்டன. நன்றி!" data-en="Your details have been received. Thank you!"></p>
-    </div>
-
-    <!-- Form card -->
-    <div class="form-card" id="form-card">
-      <form id="registration-form" novalidate>
-
-        <!-- Personal Info -->
-        <p class="section-label" data-ta="தனிப்பட்ட தகவல்" data-en="Personal Information"></p>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="name">
-              <span data-ta="பெயர்" data-en="Name"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="name" name="name" required autocomplete="name" />
-            <span class="err" id="err-name"></span>
-          </div>
-          <div class="field">
-            <label for="father_name">
-              <span data-ta="தந்தையின் பெயர்" data-en="Father's Name"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="father_name" name="father_name" required />
-            <span class="err" id="err-father_name"></span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>
-            <span data-ta="பாலினம்" data-en="Gender"></span><span class="req"> *</span>
-          </label>
-          <div class="pill-group">
-            <label class="pill-label">
-              <input type="radio" name="gender" value="Male" required />
-              <span data-ta="ஆண்" data-en="Male"></span>
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="gender" value="Female" />
-              <span data-ta="பெண்" data-en="Female"></span>
-            </label>
-          </div>
-          <span class="err" id="err-gender"></span>
-        </div>
-
-        <div class="field">
-          <label>
-            <span data-ta="கல்வித் தகுதி" data-en="Education Qualification"></span><span class="req"> *</span>
-          </label>
-          <div class="pill-group">
-            <label class="pill-label">
-              <input type="radio" name="education" value="High School" required />
-              <span data-ta="உயர்நிலைப் பள்ளி" data-en="High School"></span>
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="education" value="Under Graduate" />
-              <span data-ta="இளங்கலை" data-en="Under Graduate"></span>
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="education" value="Post Graduate" />
-              <span data-ta="முதுகலை" data-en="Post Graduate"></span>
-            </label>
-          </div>
-          <span class="err" id="err-education"></span>
-        </div>
-
-        <div class="field">
-          <label>
-            <span data-ta="நீங்கள் யார்?" data-en="Occupation"></span><span class="req"> *</span>
-          </label>
-          <div class="pill-group">
-            <label class="pill-label">
-              <input type="radio" name="occupation" value="Student" required />
-              <span data-ta="மாணவர்" data-en="Student"></span>
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="occupation" value="Private Employee" />
-              <span data-ta="தனியார் ஊழியர்" data-en="Private Employee"></span>
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="occupation" value="Business" />
-              <span data-ta="வணிகர்" data-en="Business"></span>
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="occupation" value="Government Employee" />
-              <span data-ta="அரசு ஊழியர்" data-en="Govt. Employee"></span>
-            </label>
-            <label class="pill-label">
-              <input type="radio" name="occupation" value="Other" />
-              <span data-ta="மற்றவை" data-en="Other"></span>
-            </label>
-          </div>
-          <span class="err" id="err-occupation"></span>
-        </div>
-
-        <!-- Contact Info -->
-        <p class="section-label" data-ta="தொடர்பு தகவல்" data-en="Contact Information"></p>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="email">
-              <span data-ta="மின்னஞ்சல்" data-en="Email"></span><span class="req"> *</span>
-            </label>
-            <input type="email" id="email" name="email" required autocomplete="email" placeholder="example@mail.com" />
-            <span class="err" id="err-email"></span>
-          </div>
-          <div class="field">
-            <label for="phone">
-              <span data-ta="தொடர்பு எண்" data-en="Phone"></span><span class="req"> *</span>
-            </label>
-            <input type="tel" id="phone" name="phone" required maxlength="10" placeholder="10-digit number" autocomplete="tel" inputmode="numeric" />
-            <span class="err" id="err-phone"></span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="address">
-            <span data-ta="முகவரி" data-en="Address"></span><span class="req"> *</span>
-          </label>
-          <textarea id="address" name="address" required placeholder="Door no, Street, Area..."></textarea>
-          <span class="err" id="err-address"></span>
-        </div>
-
-        <!-- Location Info -->
-        <p class="section-label" data-ta="இருப்பிட தகவல்" data-en="Location Information"></p>
-
-        <div class="field">
-          <label for="pincode">
-            <span data-ta="அஞ்சல் குறியீடு" data-en="Pincode"></span><span class="req"> *</span>
-          </label>
-          <div class="pincode-row">
-            <input type="text" id="pincode" name="pincode" required maxlength="6"
-                   placeholder="6-digit pincode" inputmode="numeric" />
-            <span id="pincode-loader" class="pincode-loader hidden"></span>
-          </div>
-          <span class="err" id="err-pincode"></span>
-        </div>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="state">
-              <span data-ta="மாநிலம்" data-en="State"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="state" name="state" required readonly class="autofilled" />
-            <span class="err" id="err-state"></span>
-          </div>
-          <div class="field">
-            <label for="district">
-              <span data-ta="மாவட்டம்" data-en="District"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="district" name="district" required class="autofilled" />
-            <span class="autofill-hint hidden" id="district-hint">
-              <span class="hint-check">✓</span>
-              <span class="hint-filled" data-ta="தானாக நிரப்பப்பட்டது" data-en="Auto-filled"></span>
-              <span class="hint-edit" data-ta="— தேவைப்பட்டால் திருத்தலாம்" data-en="— tap to edit if incorrect"></span>
-            </span>
-            <span class="err" id="err-district"></span>
-          </div>
-        </div>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="mla_constituency">
-              <span data-ta="சட்டமன்ற தொகுதி" data-en="MLA Constituency"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="mla_constituency" name="mla_constituency" required class="autofilled" />
-            <span class="autofill-hint hidden" id="mla-hint">
-              <span class="hint-check">✓</span>
-              <span class="hint-filled" data-ta="தானாக நிரப்பப்பட்டது" data-en="Auto-filled"></span>
-              <span class="hint-edit" data-ta="— தேவைப்பட்டால் திருத்தலாம்" data-en="— tap to edit if incorrect"></span>
-            </span>
-            <span class="err" id="err-mla_constituency"></span>
-          </div>
-          <div class="field">
-            <label for="mp_constituency">
-              <span data-ta="நாடாளுமன்றத் தொகுதி" data-en="MP Constituency"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="mp_constituency" name="mp_constituency" required class="autofilled" />
-            <span class="autofill-hint hidden" id="mp-hint">
-              <span class="hint-check">✓</span>
-              <span class="hint-filled" data-ta="தானாக நிரப்பப்பட்டது" data-en="Auto-filled"></span>
-              <span class="hint-edit" data-ta="— தேவைப்பட்டால் திருத்தலாம்" data-en="— tap to edit if incorrect"></span>
-            </span>
-            <span class="err" id="err-mp_constituency"></span>
-          </div>
-        </div>
-
-        <!-- Membership Info -->
-        <p class="section-label" data-ta="உறுப்பினர் தகவல்" data-en="Membership Details"></p>
-
-        <div class="field-grid">
-          <div class="field">
-            <label for="doj">
-              <span data-ta="இணையும் தேதி" data-en="Date of Joining"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="doj" name="doj" required
-                   placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" />
-            <span class="err" id="err-doj"></span>
-          </div>
-          <div class="field">
-            <label for="referred_by">
-              <span data-ta="அறிமுகப்படுத்தியவர்" data-en="Referred By"></span><span class="req"> *</span>
-            </label>
-            <input type="text" id="referred_by" name="referred_by" required />
-            <span class="err" id="err-referred_by"></span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="develop_plan">
-            <span data-ta="நேஷன் ஃபர்ஸ்டை இந்தியா முழுவதும் எவ்வாறு வளர்க்கலாம்?" data-en="How can you develop Nation First all over India?"></span><span class="req"> *</span>
-          </label>
-          <textarea id="develop_plan" name="develop_plan" required rows="4"
-                    data-ta-placeholder="உங்கள் கருத்தை இங்கே பகிரவும்..."
-                    data-en-placeholder="Share your thoughts here..."></textarea>
-          <span class="err" id="err-develop_plan"></span>
-        </div>
-
-        <!-- Declaration -->
-        <div class="field declaration">
-          <p class="declaration-text"
-             data-ta="நான் நேஷன் ஃபர்ஸ்டில் இணைய விரும்புகிறேன், மேலும் நமது நாடு மற்றும் இந்து மக்களை முழுமையாக ஆதரிப்பேன். நமது நாட்டிற்கோ அல்லது இந்து மதத்திற்கோ எதிராக ஒருபோதும் செயல்படமாட்டேன் என்று உறுதியளிக்கிறேன்."
-             data-en="I am willing to join Nation First and fully support our country and Hindu people. I promise to never act against our Country or our Hindu Religion.">
-          </p>
-          <label class="checkbox-row">
-            <input type="checkbox" id="agree" name="agree" required />
-            <span data-ta="ஒப்புக்கொள்கிறேன்" data-en="I Agree"></span>
-          </label>
-          <span class="err" id="err-agree"></span>
-        </div>
-
-        <!-- Submit -->
-        <div class="submit-wrap">
-          <button type="submit" id="submit-btn" class="submit-btn">
-            <span id="submit-text" data-ta="பதிவு செய்யவும்" data-en="Submit Registration"></span>
-            <span id="submit-loader" class="submit-loader hidden"></span>
-          </button>
-        </div>
-
-      </form>
-    </div>
-
-    <!-- Contact -->
-    <div class="contact-bar">
-      <span data-ta="தொடர்புக்கு" data-en="Contact Us"></span>
-      <a href="mailto:firstnation2026@gmail.com">firstnation2026@gmail.com</a>
-    </div>
-
   </div>
 
-  <script src="data/constituencies.js"></script>
-  <script src="script.js"></script>
+  <!-- Success -->
+  <div id="success-msg" class="success-msg hidden">
+    <div class="success-icon">✓</div>
+    <h2 data-ta="பதிவு வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது!" data-en="Registration Submitted!"></h2>
+    <p data-ta="உங்கள் தகவல்கள் பெறப்பட்டன. நன்றி!" data-en="Your details have been received. Thank you!"></p>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card" id="form-card">
+
+    <p class="form-heading" data-ta="உறுப்பினர் பதிவு படிவம்" data-en="Member Registration Form"></p>
+
+    <form id="registration-form" novalidate>
+
+      <!-- Personal -->
+      <p class="section-label" data-ta="தனிப்பட்ட தகவல்" data-en="Personal Information"></p>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="name"><span data-ta="பெயர்" data-en="Full Name"></span><span class="req"> *</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+          <span class="err" id="err-name"></span>
+        </div>
+        <div class="field">
+          <label for="father_name"><span data-ta="தந்தையின் பெயர்" data-en="Father's Name"></span><span class="req"> *</span></label>
+          <input type="text" id="father_name" name="father_name" required />
+          <span class="err" id="err-father_name"></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label><span data-ta="பாலினம்" data-en="Gender"></span><span class="req"> *</span></label>
+        <div class="pill-group">
+          <label class="pill-label"><input type="radio" name="gender" value="Male" required /><span data-ta="ஆண்" data-en="Male"></span></label>
+          <label class="pill-label"><input type="radio" name="gender" value="Female" /><span data-ta="பெண்" data-en="Female"></span></label>
+        </div>
+        <span class="err" id="err-gender"></span>
+      </div>
+
+      <div class="field">
+        <label><span data-ta="கல்வித் தகுதி" data-en="Education Qualification"></span><span class="req"> *</span></label>
+        <div class="pill-group">
+          <label class="pill-label"><input type="radio" name="education" value="High School" required /><span data-ta="உயர்நிலைப் பள்ளி" data-en="High School"></span></label>
+          <label class="pill-label"><input type="radio" name="education" value="Under Graduate" /><span data-ta="இளங்கலை" data-en="Under Graduate"></span></label>
+          <label class="pill-label"><input type="radio" name="education" value="Post Graduate" /><span data-ta="முதுகலை" data-en="Post Graduate"></span></label>
+        </div>
+        <span class="err" id="err-education"></span>
+      </div>
+
+      <div class="field">
+        <label><span data-ta="நீங்கள் யார்?" data-en="Occupation"></span><span class="req"> *</span></label>
+        <div class="pill-group">
+          <label class="pill-label"><input type="radio" name="occupation" value="Student" required /><span data-ta="மாணவர்" data-en="Student"></span></label>
+          <label class="pill-label"><input type="radio" name="occupation" value="Private Employee" /><span data-ta="தனியார் ஊழியர்" data-en="Private Employee"></span></label>
+          <label class="pill-label"><input type="radio" name="occupation" value="Business" /><span data-ta="வணிகர்" data-en="Business"></span></label>
+          <label class="pill-label"><input type="radio" name="occupation" value="Government Employee" /><span data-ta="அரசு ஊழியர்" data-en="Govt. Employee"></span></label>
+          <label class="pill-label"><input type="radio" name="occupation" value="Other" /><span data-ta="மற்றவை" data-en="Other"></span></label>
+        </div>
+        <span class="err" id="err-occupation"></span>
+      </div>
+
+      <!-- Contact -->
+      <p class="section-label" data-ta="தொடர்பு தகவல்" data-en="Contact Information"></p>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="email"><span data-ta="மின்னஞ்சல்" data-en="Email"></span><span class="req"> *</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="example@mail.com" />
+          <span class="err" id="err-email"></span>
+        </div>
+        <div class="field">
+          <label for="phone"><span data-ta="தொடர்பு எண்" data-en="Phone Number"></span><span class="req"> *</span></label>
+          <input type="tel" id="phone" name="phone" required maxlength="10" placeholder="10-digit number" inputmode="numeric" />
+          <span class="err" id="err-phone"></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="address"><span data-ta="முகவரி" data-en="Address"></span><span class="req"> *</span></label>
+        <textarea id="address" name="address" required data-ta-placeholder="கதவு எண், தெரு, பகுதி..." data-en-placeholder="Door no, Street, Area..."></textarea>
+        <span class="err" id="err-address"></span>
+      </div>
+
+      <!-- Location -->
+      <p class="section-label" data-ta="இருப்பிட தகவல்" data-en="Location Information"></p>
+
+      <div class="field">
+        <label for="pincode"><span data-ta="அஞ்சல் குறியீடு" data-en="Pincode"></span><span class="req"> *</span></label>
+        <div class="pincode-row">
+          <input type="text" id="pincode" name="pincode" required maxlength="6" placeholder="6-digit pincode" inputmode="numeric" />
+          <span id="pincode-loader" class="pincode-loader hidden"></span>
+        </div>
+        <span class="err" id="err-pincode"></span>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="state"><span data-ta="மாநிலம்" data-en="State"></span><span class="req"> *</span></label>
+          <input type="text" id="state" name="state" required readonly class="autofilled" />
+          <span class="err" id="err-state"></span>
+        </div>
+        <div class="field">
+          <label for="district"><span data-ta="மாவட்டம்" data-en="District"></span><span class="req"> *</span></label>
+          <input type="text" id="district" name="district" required class="autofilled" />
+          <span class="autofill-hint hidden" id="district-hint">
+            <span class="hint-check">✓</span>
+            <span class="hint-filled" data-ta="தானாக நிரப்பப்பட்டது" data-en="Auto-filled"></span>
+            <span class="hint-edit" data-ta="— தேவைப்பட்டால் திருத்தலாம்" data-en="— tap to edit if incorrect"></span>
+          </span>
+          <span class="err" id="err-district"></span>
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="mla_constituency"><span data-ta="சட்டமன்ற தொகுதி" data-en="MLA Constituency"></span><span class="req"> *</span></label>
+          <input type="text" id="mla_constituency" name="mla_constituency" required class="autofilled" />
+          <span class="autofill-hint hidden" id="mla-hint">
+            <span class="hint-check">✓</span>
+            <span class="hint-filled" data-ta="தானாக நிரப்பப்பட்டது" data-en="Auto-filled"></span>
+            <span class="hint-edit" data-ta="— தேவைப்பட்டால் திருத்தலாம்" data-en="— tap to edit if incorrect"></span>
+          </span>
+          <span class="err" id="err-mla_constituency"></span>
+        </div>
+        <div class="field">
+          <label for="mp_constituency"><span data-ta="நாடாளுமன்றத் தொகுதி" data-en="MP Constituency"></span><span class="req"> *</span></label>
+          <input type="text" id="mp_constituency" name="mp_constituency" required class="autofilled" />
+          <span class="autofill-hint hidden" id="mp-hint">
+            <span class="hint-check">✓</span>
+            <span class="hint-filled" data-ta="தானாக நிரப்பப்பட்டது" data-en="Auto-filled"></span>
+            <span class="hint-edit" data-ta="— தேவைப்பட்டால் திருத்தலாம்" data-en="— tap to edit if incorrect"></span>
+          </span>
+          <span class="err" id="err-mp_constituency"></span>
+        </div>
+      </div>
+
+      <!-- Membership -->
+      <p class="section-label" data-ta="உறுப்பினர் தகவல்" data-en="Membership Details"></p>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="doj"><span data-ta="இணையும் தேதி" data-en="Date of Joining"></span><span class="req"> *</span></label>
+          <input type="text" id="doj" name="doj" required placeholder="DD/MM/YYYY" maxlength="10" inputmode="numeric" />
+          <span class="err" id="err-doj"></span>
+        </div>
+        <div class="field">
+          <label for="referred_by"><span data-ta="அறிமுகப்படுத்தியவர்" data-en="Referred By"></span><span class="req"> *</span></label>
+          <input type="text" id="referred_by" name="referred_by" required />
+          <span class="err" id="err-referred_by"></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="develop_plan"><span data-ta="நேஷன் ஃபர்ஸ்டை இந்தியா முழுவதும் எவ்வாறு வளர்க்கலாம்?" data-en="How can you develop Nation First all over India?"></span><span class="req"> *</span></label>
+        <textarea id="develop_plan" name="develop_plan" required
+                  data-ta-placeholder="உங்கள் கருத்தை இங்கே பகிரவும்..."
+                  data-en-placeholder="Share your thoughts here..."></textarea>
+        <span class="err" id="err-develop_plan"></span>
+      </div>
+
+      <!-- Declaration -->
+      <div class="field declaration">
+        <p class="declaration-text"
+           data-ta="நான் நேஷன் ஃபர்ஸ்டில் இணைய விரும்புகிறேன், மேலும் நமது நாடு மற்றும் இந்து மக்களை முழுமையாக ஆதரிப்பேன். நமது நாட்டிற்கோ அல்லது இந்து மதத்திற்கோ எதிராக ஒருபோதும் செயல்படமாட்டேன் என்று உறுதியளிக்கிறேன்."
+           data-en="I am willing to join Nation First and fully support our country and Hindu people. I promise to never act against our Country or our Hindu Religion.">
+        </p>
+        <label class="checkbox-row">
+          <input type="checkbox" id="agree" name="agree" required />
+          <span data-ta="ஒப்புக்கொள்கிறேன்" data-en="I Agree"></span>
+        </label>
+        <span class="err" id="err-agree"></span>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" id="submit-btn" class="submit-btn">
+          <span id="submit-text" data-ta="பதிவு செய்யவும்" data-en="Register Now"></span>
+          <span id="submit-loader" class="submit-loader hidden"></span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-bar">
+    <span data-ta="தொடர்புக்கு:" data-en="Contact Us:"></span>
+    <a href="mailto:firstnation2026@gmail.com">firstnation2026@gmail.com</a>
+  </div>
+
+</div>
+
+<script src="data/constituencies.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
