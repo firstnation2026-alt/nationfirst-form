@@ -259,7 +259,7 @@ sendOtpBtn.addEventListener('click', async () => {
   try {
     const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ action: 'send_otp', phone }),
     });
     const data = await res.json();
@@ -300,7 +300,7 @@ verifyOtpBtn.addEventListener('click', async () => {
   try {
     const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ action: 'verify_otp', phone, otp }),
     });
     const data = await res.json();
@@ -392,7 +392,7 @@ document.getElementById('registration-form').addEventListener('submit', async (e
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify({ action: 'register', ...payload }),
     });
     document.getElementById('form-card').classList.add('hidden');
