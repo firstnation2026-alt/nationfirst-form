@@ -4,7 +4,7 @@
 
 const SHEET_NAME     = 'Registrations';
 const OTP_SHEET_NAME = 'OTP_Store';
-const FAST2SMS_KEY   = 'YOUR_FAST2SMS_API_KEY_HERE'; // paste your key here
+const FAST2SMS_KEY   = 'P7J9HvNxomyaRbKSdFVcQs0DqTOG4ukeI31zi6jtlBrfnXZCgLfh42lgskMInxu3X6VUecpPymOAwGCD'; // paste your key here
 const OTP_TTL_MS     = 5 * 60 * 1000; // 5 minutes
 
 const HEADERS = [
