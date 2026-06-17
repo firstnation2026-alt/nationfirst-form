@@ -204,12 +204,155 @@ function validateForm() {
   return valid;
 }
 
+// ── OTP ───────────────────────────────────────────────────────────────────────
+
+let phoneVerified = false;
+let otpCountdown  = null;
+
+const phoneInput     = document.getElementById('phone');
+const sendOtpBtn     = document.getElementById('send-otp-btn');
+const sendOtpText    = document.getElementById('send-otp-text');
+const sendOtpLoader  = document.getElementById('send-otp-loader');
+const otpField       = document.getElementById('otp-field');
+const otpInput       = document.getElementById('otp-input');
+const verifyOtpBtn   = document.getElementById('verify-otp-btn');
+const verifyOtpText  = document.getElementById('verify-otp-text');
+const verifyOtpLoader = document.getElementById('verify-otp-loader');
+const otpTimer       = document.getElementById('otp-timer');
+const otpVerified    = document.getElementById('otp-verified');
+
+function startOtpTimer() {
+  let secs = 60;
+  otpTimer.classList.remove('hidden');
+  otpTimer.textContent = currentLang === 'ta'
+    ? `மீண்டும் அனுப்ப ${secs}s காத்திருக்கவும்`
+    : `Resend in ${secs}s`;
+  sendOtpBtn.disabled = true;
+  clearInterval(otpCountdown);
+  otpCountdown = setInterval(() => {
+    secs--;
+    if (secs <= 0) {
+      clearInterval(otpCountdown);
+      otpTimer.classList.add('hidden');
+      sendOtpBtn.disabled = false;
+      sendOtpText.textContent = currentLang === 'ta' ? 'மீண்டும் அனுப்பு' : 'Resend OTP';
+    } else {
+      otpTimer.textContent = currentLang === 'ta'
+        ? `மீண்டும் அனுப்ப ${secs}s காத்திருக்கவும்`
+        : `Resend in ${secs}s`;
+    }
+  }, 1000);
+}
+
+sendOtpBtn.addEventListener('click', async () => {
+  clearErr('phone');
+  const phone = phoneInput.value.trim();
+  if (!/^[6-9][0-9]{9}$/.test(phone)) {
+    setErr('phone', MSGS.phone[currentLang]);
+    return;
+  }
+
+  sendOtpBtn.disabled = true;
+  sendOtpText.classList.add('hidden');
+  sendOtpLoader.classList.remove('hidden');
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'send_otp', phone }),
+    });
+    const data = await res.json();
+    if (data.status === 'ok') {
+      otpField.classList.remove('hidden');
+      otpInput.focus();
+      startOtpTimer();
+      phoneVerified = false;
+      otpVerified.classList.add('hidden');
+      otpInput.value = '';
+      clearErr('otp');
+    } else {
+      setErr('phone', data.message || (currentLang === 'ta' ? 'OTP அனுப்ப முடியவில்லை' : 'Failed to send OTP'));
+      sendOtpBtn.disabled = false;
+    }
+  } catch {
+    setErr('phone', currentLang === 'ta' ? 'நெட்வொர்க் பிழை. மீண்டும் முயற்சிக்கவும்.' : 'Network error. Try again.');
+    sendOtpBtn.disabled = false;
+  } finally {
+    sendOtpText.classList.remove('hidden');
+    sendOtpLoader.classList.add('hidden');
+  }
+});
+
+verifyOtpBtn.addEventListener('click', async () => {
+  clearErr('otp');
+  const phone = phoneInput.value.trim();
+  const otp   = otpInput.value.trim();
+  if (otp.length !== 6) {
+    setErr('otp', currentLang === 'ta' ? '6 இலக்க OTP உள்ளிடவும்' : 'Enter the 6-digit OTP');
+    return;
+  }
+
+  verifyOtpBtn.disabled = true;
+  verifyOtpText.classList.add('hidden');
+  verifyOtpLoader.classList.remove('hidden');
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'verify_otp', phone, otp }),
+    });
+    const data = await res.json();
+    if (data.status === 'ok') {
+      phoneVerified = true;
+      otpVerified.classList.remove('hidden');
+      otpTimer.classList.add('hidden');
+      clearInterval(otpCountdown);
+      otpInput.disabled = true;
+      verifyOtpBtn.disabled = true;
+      sendOtpBtn.disabled = true;
+      phoneInput.disabled = true;
+      clearErr('otp');
+    } else {
+      setErr('otp', data.message || (currentLang === 'ta' ? 'தவறான OTP' : 'Invalid OTP'));
+      verifyOtpBtn.disabled = false;
+    }
+  } catch {
+    setErr('otp', currentLang === 'ta' ? 'நெட்வொர்க் பிழை. மீண்டும் முயற்சிக்கவும்.' : 'Network error. Try again.');
+    verifyOtpBtn.disabled = false;
+  } finally {
+    verifyOtpText.classList.remove('hidden');
+    verifyOtpLoader.classList.add('hidden');
+  }
+});
+
+// reset OTP state if phone number is changed
+phoneInput.addEventListener('input', () => {
+  phoneVerified = false;
+  otpField.classList.add('hidden');
+  otpVerified.classList.add('hidden');
+  otpTimer.classList.add('hidden');
+  clearInterval(otpCountdown);
+  sendOtpBtn.disabled = false;
+  otpInput.disabled = false;
+  verifyOtpBtn.disabled = false;
+});
+
 // ── Submit ────────────────────────────────────────────────────────────────────
 
 document.getElementById('registration-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!validateForm()) {
     document.querySelector('.invalid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  if (!phoneVerified) {
+    setErr('phone', currentLang === 'ta'
+      ? 'தொடர்வதற்கு முன் தொலைபேசியை சரிபார்க்கவும்'
+      : 'Please verify your phone number before submitting');
+    document.getElementById('phone').scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
@@ -249,9 +392,8 @@ document.getElementById('registration-form').addEventListener('submit', async (e
   try {
     await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ action: 'register', ...payload }),
     });
     document.getElementById('form-card').classList.add('hidden');
     const sm = document.getElementById('success-msg');

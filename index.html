@@ -104,9 +104,32 @@
         </div>
         <div class="field">
           <label for="phone"><span data-ta="தொடர்பு எண்" data-en="Phone Number"></span><span class="req"> *</span></label>
-          <input type="tel" id="phone" name="phone" required maxlength="10" placeholder="10-digit number" inputmode="numeric" />
+          <div class="phone-otp-row">
+            <input type="tel" id="phone" name="phone" required maxlength="10" placeholder="10-digit number" inputmode="numeric" />
+            <button type="button" id="send-otp-btn" class="otp-send-btn">
+              <span id="send-otp-text" data-ta="OTP அனுப்பு" data-en="Send OTP"></span>
+              <span id="send-otp-loader" class="submit-loader hidden"></span>
+            </button>
+          </div>
           <span class="err" id="err-phone"></span>
         </div>
+      </div>
+
+      <!-- OTP verification row — hidden until OTP is sent -->
+      <div class="field hidden" id="otp-field">
+        <label for="otp-input"><span data-ta="OTP சரிபார்ப்பு" data-en="OTP Verification"></span><span class="req"> *</span></label>
+        <div class="phone-otp-row">
+          <input type="text" id="otp-input" maxlength="6" placeholder="Enter 6-digit OTP" inputmode="numeric" autocomplete="one-time-code" />
+          <button type="button" id="verify-otp-btn" class="otp-send-btn">
+            <span id="verify-otp-text" data-ta="சரிபார்" data-en="Verify"></span>
+            <span id="verify-otp-loader" class="submit-loader hidden"></span>
+          </button>
+        </div>
+        <span class="otp-timer hidden" id="otp-timer"></span>
+        <span class="otp-verified hidden" id="otp-verified">
+          <span data-ta="தொலைபேசி சரிபார்க்கப்பட்டது" data-en="Phone verified"></span>
+        </span>
+        <span class="err" id="err-otp"></span>
       </div>
 
       <div class="field">
