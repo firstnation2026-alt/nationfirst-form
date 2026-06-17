@@ -99,26 +99,7 @@
       <div class="field-grid">
         <div class="field">
           <label for="email"><span data-ta="மின்னஞ்சல்" data-en="Email"></span><span class="req"> *</span></label>
-          <div class="phone-otp-row">
-            <input type="email" id="email" name="email" required autocomplete="email" placeholder="example@mail.com" />
-            <button type="button" id="send-otp-btn" class="otp-send-btn">
-              <span id="send-otp-text" data-ta="OTP அனுப்பு" data-en="Send OTP"></span>
-              <span id="send-otp-loader" class="submit-loader hidden"></span>
-            </button>
-          </div>
-          <!-- OTP input — shown after OTP is sent -->
-          <div class="hidden" id="otp-field" style="margin-top:10px;">
-            <div class="phone-otp-row">
-              <input type="text" id="otp-input" maxlength="6" placeholder="Enter 6-digit OTP" inputmode="numeric" autocomplete="one-time-code" />
-              <button type="button" id="verify-otp-btn" class="otp-send-btn">
-                <span id="verify-otp-text" data-ta="சரிபார்" data-en="Verify"></span>
-                <span id="verify-otp-loader" class="submit-loader hidden"></span>
-              </button>
-            </div>
-            <span class="otp-timer hidden" id="otp-timer"></span>
-            <span class="otp-verified hidden" id="otp-verified"><span data-ta="மின்னஞ்சல் சரிபார்க்கப்பட்டது" data-en="Email verified"></span></span>
-            <span class="err" id="err-otp"></span>
-          </div>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="example@mail.com" />
           <span class="err" id="err-email"></span>
         </div>
         <div class="field">

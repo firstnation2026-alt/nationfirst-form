@@ -385,41 +385,6 @@ input.invalid, textarea.invalid {
   font-style: italic;
 }
 
-/* OTP row */
-.phone-otp-row { display: flex; gap: 10px; align-items: flex-start; }
-.phone-otp-row input { flex: 1; }
-.otp-send-btn {
-  height: 54px;
-  padding: 0 18px;
-  background: var(--green);
-  color: var(--white);
-  border: none;
-  border-radius: var(--radius);
-  font-size: 0.85rem;
-  font-weight: 700;
-  font-family: var(--font-head);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background var(--transition), opacity var(--transition);
-}
-.otp-send-btn:hover:not(:disabled) { background: var(--green-dark); }
-.otp-send-btn:disabled { opacity: 0.55; cursor: not-allowed; }
-.otp-timer { font-size: 0.78rem; color: var(--muted); display: block; margin-top: 6px; }
-.otp-verified {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--green);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 6px;
-}
-.otp-verified::before { content: '✓'; }
-
 /* Contact bar */
 .contact-bar {
   display: flex;
