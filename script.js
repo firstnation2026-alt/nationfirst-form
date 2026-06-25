@@ -1,4 +1,4 @@
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzfpAVbULiFaHC-JcJbvyUAe7FJzu2sVX99bmPjQBgJ7floYwDuPULBSarFNx7E91y5/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0JlQNOg11llfiekN7UvAqEB6p78pP-AKw7CQp3RvfTeKVN4a3RVomI_tx2i2QkVDN/exec';
 
 function generateMembershipId(pincode) {
   const pin3   = String(pincode).slice(-3).padStart(3, '0');
