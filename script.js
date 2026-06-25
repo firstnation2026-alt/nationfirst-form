@@ -247,12 +247,14 @@ document.getElementById('registration-form').addEventListener('submit', async (e
   };
 
   try {
-    await fetch(APPS_SCRIPT_URL, {
+    const res = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload),
     });
+    const result = await res.json();
+    console.log('Apps Script response:', result);
     document.getElementById('form-card').classList.add('hidden');
     const sm = document.getElementById('success-msg');
     sm.classList.remove('hidden');
